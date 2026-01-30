@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+        <table border="1">
+
+            <!-- ROW 1 -->
+            <tr>
+
+                <!-- CALCULATOR DISPLAY -->
+                <td colspan="3">
+                    <input type="text" id="input-number" value="0">
+                </td>
+
+                <!-- OPERATOR DISPLAY -->
+                <td id="operator-display"></td>
+
+            </tr>
+
+            <!-- ROW 2 -->
+            <tr>
+                <td onclick="digitBtnPressed(7)">7</td>
+                <td onclick="digitBtnPressed(8)">8</td>
+                <td onclick="digitBtnPressed(9)">9</td>
+                <td onclick="operatorBtnPressed('+')">+</td>
+            </tr>
+
+            <!-- ROW 3 -->
+            <tr>
+                <td onclick="digitBtnPressed(4)">4</td>
+                <td onclick="digitBtnPressed(5)">5</td>
+                <td onclick="digitBtnPressed(6)">6</td>
+                <td onclick="operatorBtnPressed('-')">-</td>
+            </tr>
+
+            <!-- ROW 4 -->
+            <tr>
+                <td onclick="digitBtnPressed(1)">1</td>
+                <td onclick="digitBtnPressed(2)">2</td>
+                <td onclick="digitBtnPressed(3)">3</td>
+                <td onclick="operatorBtnPressed('*')">x</td>
+            </tr>
+
+            <!-- ROW 5 -->
+            <tr>
+                <td onclick="buttonAcPressed()">AC</td>
+                <td onclick="digitBtnPressed(0)">0</td>
+                <td onclick="decimalBtnPressed()">.</td>
+                <td onclick="operatorBtnPressed('/')">÷</td>
+            </tr>
+
+            <!-- ROW 6 -->
+            <tr>
+                <td colspan="3">=</td>
+                <td>±</td>
+            </tr>
+            
+        </table>
+        <script src="script.js"></script>
+    </body>
+</html>
