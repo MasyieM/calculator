@@ -1,20 +1,21 @@
 
 let firstNumber = null;
 let secondNumber = null;
-let operatorChosen = "";
-let shouldResetDisplay = false;
-let calculatorError = false;
+let currentOperator = "";
+let newLine = false; //determines if the next number user types will reset the calculator display
+let calculatorError = false; //error state of the calculator
 
+// =================== DIGIT BUTTON EVENT HANDLER ===================//
 function digitBtnPressed(digit) {
     
     const calculatorDisplay = document.getElementById("calculator-display");
     const operatorDisplay = document.getElementById("operator-display")
 
-    if (shouldResetDisplay) {
+    if (newLine) {
 
         operatorDisplay.innerHTML = "";
         calculatorDisplay.value = digit;
-        shouldResetDisplay = false;
+        newLine = false;
         calculatorError = false;
         return;
 
@@ -24,12 +25,14 @@ function digitBtnPressed(digit) {
 
     } else {
 
-        calculatorDisplay.value += digit
+        calculatorDisplay.value += digit;
 
     }
 
 }
 
+
+// =================== DECIMAL BUTTON EVENT HANDLER ===================//
 function decimalBtnPressed() {
     
     const calculatorDisplay = document.getElementById("calculator-display");
@@ -40,10 +43,10 @@ function decimalBtnPressed() {
 
     }
 
-    if (shouldResetDisplay) {
+    if (newLine) {
 
         calculatorDisplay.value = "0.";
-        shouldResetDisplay = false;
+        newLine = false;
         return;
 
     }
@@ -53,6 +56,7 @@ function decimalBtnPressed() {
     }
 }
 
+// =================== TOGGLE NEGATIVE SIGN BUTTON EVENT HANDLER ===================//
 function toggleSignBtnPressed() {
 
     const calculatorDisplay = document.getElementById("calculator-display");
@@ -67,23 +71,24 @@ function toggleSignBtnPressed() {
 
 }
 
+// =================== OPERATOR BUTTON EVENT HANDLER ===================//
 function operatorBtnPressed(operator) {
 
     const calculatorDisplay = document.getElementById("calculator-display");
     const operatorDisplay = document.getElementById("operator-display");
 
-    if (calculatorError || (operatorChosen !== "" && shouldResetDisplay)) {
+    if (calculatorError || (currentOperator !== "" && newLine)) {
 
         return;
 
     }
 
     firstNumber = parseFloat(calculatorDisplay.value);
-    operatorChosen = operator;
+    currentOperator = operator;
 
     operatorDisplay.innerHTML = operator;
 
-    shouldResetDisplay = true;
+    newLine = true;
 }
 
 function buttonAcPressed() {
@@ -92,18 +97,19 @@ function buttonAcPressed() {
     document.getElementById("operator-display").innerHTML = ""
     firstNumber = null;
     secondNumber = null;
-    operatorChosen = "";
-    shouldResetDisplay = false;
+    currentOperator = "";
+    newLine = false;
     calculatorError = false;
 
 }
 
+// =================== EQUAL-SIGN BUTTON EVENT HANDLER ===================//
 function equalBtnPressed() {
 
     const calculatorDisplay = document.getElementById("calculator-display");
     const operatorDisplay = document.getElementById("operator-display");
 
-    if (calculatorError || operatorChosen === "") {
+    if (calculatorError || currentOperator === "") {
 
         return;
 
@@ -113,7 +119,7 @@ function equalBtnPressed() {
 
     let result;
 
-    switch (operatorChosen) {
+    switch (currentOperator) {
 
         case "+":
 
@@ -136,7 +142,7 @@ function equalBtnPressed() {
 
                 result = "Error";
                 calculatorError = true;
-                shouldResetDisplay = true;
+                newLine = true;
                 break;
 
             } else {
@@ -152,7 +158,7 @@ function equalBtnPressed() {
     firstNumber = null;
     secondNumber = null;
     operatorDisplay.innerHTML = "=";
-    operatorChosen = "";
-    shouldResetDisplay = true;
+    currentOperator = "";
+    newLine = true;
 
 }

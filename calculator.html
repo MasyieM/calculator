@@ -10,51 +10,51 @@
             <tr>
 
                 <!-- CALCULATOR DISPLAY -->
-                <td colspan="3">
-                    <input type="text" id="calculator-display" value="0">
+                <td class="display" colspan="3">
+                    <input type="text" id="calculator-display" value="0" readonly>
                 </td>
 
                 <!-- OPERATOR DISPLAY -->
-                <td id="operator-display"></td>
+                <td class="display" id="operator-display"></td>
 
             </tr>
 
             <!-- ROW 2 -->
             <tr>
-                <td onclick="digitBtnPressed(7)">7</td>
-                <td onclick="digitBtnPressed(8)">8</td>
-                <td onclick="digitBtnPressed(9)">9</td>
-                <td onclick="operatorBtnPressed('+')">+</td>
+                <td class="digit-button" onclick="digitBtnPressed(7)">7</td>
+                <td class="digit-button" onclick="digitBtnPressed(8)">8</td>
+                <td class="digit-button" onclick="digitBtnPressed(9)">9</td>
+                <td class="operator-button" onclick="operatorBtnPressed('+')">+</td>
             </tr>
 
             <!-- ROW 3 -->
             <tr>
-                <td onclick="digitBtnPressed(4)">4</td>
-                <td onclick="digitBtnPressed(5)">5</td>
-                <td onclick="digitBtnPressed(6)">6</td>
-                <td onclick="operatorBtnPressed('-')">-</td>
+                <td class="digit-button" onclick="digitBtnPressed(4)">4</td>
+                <td class="digit-button" onclick="digitBtnPressed(5)">5</td>
+                <td class="digit-button" onclick="digitBtnPressed(6)">6</td>
+                <td class="operator-button" onclick="operatorBtnPressed('-')">-</td>
             </tr>
 
             <!-- ROW 4 -->
             <tr>
-                <td onclick="digitBtnPressed(1)">1</td>
-                <td onclick="digitBtnPressed(2)">2</td>
-                <td onclick="digitBtnPressed(3)">3</td>
-                <td onclick="operatorBtnPressed('x')">x</td>
+                <td class="digit-button" onclick="digitBtnPressed(1)">1</td>
+                <td class="digit-button" onclick="digitBtnPressed(2)">2</td>
+                <td class="digit-button" onclick="digitBtnPressed(3)">3</td>
+                <td class="operator-button" onclick="operatorBtnPressed('x')">x</td>
             </tr>
 
             <!-- ROW 5 -->
             <tr>
-                <td onclick="buttonAcPressed()">AC</td>
-                <td onclick="digitBtnPressed(0)">0</td>
-                <td onclick="decimalBtnPressed()">.</td>
-                <td onclick="operatorBtnPressed('÷')">÷</td>
+                <td class="misc-button" onclick="buttonAcPressed()">AC</td>
+                <td class="digit-button" onclick="digitBtnPressed(0)">0</td>
+                <td class="misc-button" onclick="decimalBtnPressed()">.</td>
+                <td class="operator-button" onclick="operatorBtnPressed('÷')">÷</td>
             </tr>
 
             <!-- ROW 6 -->
             <tr>
-                <td colspan="3" onclick="equalBtnPressed()">=</td>
-                <td onclick="toggleSignBtnPressed()">±</td>
+                <td class="operator-button" colspan="3" onclick="equalBtnPressed()">=</td>
+                <td class="operator-button" onclick="toggleSignBtnPressed()">±</td>
             </tr>
             
         </table>
