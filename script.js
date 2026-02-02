@@ -1,58 +1,158 @@
 
 let firstNumber = null;
+let secondNumber = null;
 let operatorChosen = "";
 let shouldResetDisplay = false;
+let calculatorError = false;
 
 function digitBtnPressed(digit) {
     
-    const display = document.getElementById("input-number");
+    const calculatorDisplay = document.getElementById("calculator-display");
+    const operatorDisplay = document.getElementById("operator-display")
 
     if (shouldResetDisplay) {
 
-        display.value = digit;
+        operatorDisplay.innerHTML = "";
+        calculatorDisplay.value = digit;
         shouldResetDisplay = false;
+        calculatorError = false;
+        return;
 
-    } else if (display.value === "0") {
+    } else if (calculatorDisplay.value === "0") {
 
-        display.value = digit;
+        calculatorDisplay.value = digit;
 
     } else {
 
-        display.value +=digit
+        calculatorDisplay.value += digit
 
     }
 
 }
 
 function decimalBtnPressed() {
+    
+    const calculatorDisplay = document.getElementById("calculator-display");
 
-    const display = document.getElementById("input-number");
+    if (calculatorError) {
+
+        return;
+
+    }
 
     if (shouldResetDisplay) {
-        display.value = "0.";
+
+        calculatorDisplay.value = "0.";
         shouldResetDisplay = false;
         return;
+
     }
 
-    if (!display.value.includes(".")) {
-        display.value += ".";
+    if (!calculatorDisplay.value.includes(".")) {
+        calculatorDisplay.value += ".";
     }
+}
+
+function toggleSignBtnPressed() {
+
+    const calculatorDisplay = document.getElementById("calculator-display");
+
+    if (calculatorError === true || calculatorDisplay.value === "0") {
+
+        return;
+
+    }
+    
+    calculatorDisplay.value = calculatorDisplay.value * -1;
+
 }
 
 function operatorBtnPressed(operator) {
 
-    firstNumber = document.getElementById("input-number").value;
+    const calculatorDisplay = document.getElementById("calculator-display");
+    const operatorDisplay = document.getElementById("operator-display");
+
+    if (calculatorError || (operatorChosen !== "" && shouldResetDisplay)) {
+
+        return;
+
+    }
+
+    firstNumber = parseFloat(calculatorDisplay.value);
     operatorChosen = operator;
 
-    document.getElementById("operator-display").innerHTML = operator;
+    operatorDisplay.innerHTML = operator;
 
     shouldResetDisplay = true;
 }
 
 function buttonAcPressed() {
-    document.getElementById("input-number").value = "0"
+
+    document.getElementById("calculator-display").value = "0"
+    document.getElementById("operator-display").innerHTML = ""
     firstNumber = null;
+    secondNumber = null;
     operatorChosen = "";
     shouldResetDisplay = false;
+    calculatorError = false;
+
+}
+
+function equalBtnPressed() {
+
+    const calculatorDisplay = document.getElementById("calculator-display");
+    const operatorDisplay = document.getElementById("operator-display");
+
+    if (calculatorError || operatorChosen === "") {
+
+        return;
+
+    }
+
+    secondNumber = parseFloat(calculatorDisplay.value)
+
+    let result;
+
+    switch (operatorChosen) {
+
+        case "+":
+
+            result = firstNumber + secondNumber;
+            break;
+
+        case "-":
+
+            result = firstNumber - secondNumber;
+            break;
+
+        case "x":
+
+            result = firstNumber * secondNumber;
+            break;
+
+        case "÷":
+
+            if (secondNumber === 0) {
+
+                result = "Error";
+                calculatorError = true;
+                shouldResetDisplay = true;
+                break;
+
+            } else {
+
+                result = firstNumber / secondNumber;
+                break;
+
+            }
+
+    }
+
+    calculatorDisplay.value = result;
+    firstNumber = null;
+    secondNumber = null;
+    operatorDisplay.innerHTML = "=";
+    operatorChosen = "";
+    shouldResetDisplay = true;
 
 }

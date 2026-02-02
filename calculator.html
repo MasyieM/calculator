@@ -11,7 +11,7 @@
 
                 <!-- CALCULATOR DISPLAY -->
                 <td colspan="3">
-                    <input type="text" id="input-number" value="0">
+                    <input type="text" id="calculator-display" value="0">
                 </td>
 
                 <!-- OPERATOR DISPLAY -->
@@ -40,7 +40,7 @@
                 <td onclick="digitBtnPressed(1)">1</td>
                 <td onclick="digitBtnPressed(2)">2</td>
                 <td onclick="digitBtnPressed(3)">3</td>
-                <td onclick="operatorBtnPressed('*')">x</td>
+                <td onclick="operatorBtnPressed('x')">x</td>
             </tr>
 
             <!-- ROW 5 -->
@@ -48,13 +48,13 @@
                 <td onclick="buttonAcPressed()">AC</td>
                 <td onclick="digitBtnPressed(0)">0</td>
                 <td onclick="decimalBtnPressed()">.</td>
-                <td onclick="operatorBtnPressed('/')">÷</td>
+                <td onclick="operatorBtnPressed('÷')">÷</td>
             </tr>
 
             <!-- ROW 6 -->
             <tr>
-                <td colspan="3">=</td>
-                <td>±</td>
+                <td colspan="3" onclick="equalBtnPressed()">=</td>
+                <td onclick="toggleSignBtnPressed()">±</td>
             </tr>
             
         </table>
