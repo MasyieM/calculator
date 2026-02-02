@@ -2,8 +2,9 @@
 let firstNumber = null;
 let secondNumber = null;
 let currentOperator = "";
-let newLine = false; //determines if the next number user types will reset the calculator display
-let calculatorError = false; //error state of the calculator
+let newLine = false; // determines if the next number user types will reset the calculator display
+let calculatorError = false; // error state of the calculator
+let showingResult = false; // true when "=" is displayed
 
 // =================== DIGIT BUTTON EVENT HANDLER ===================//
 function digitBtnPressed(digit) {
@@ -11,9 +12,14 @@ function digitBtnPressed(digit) {
     const calculatorDisplay = document.getElementById("calculator-display");
     const operatorDisplay = document.getElementById("operator-display")
 
+    // Clear "=" only when user starts typing again
+    if (showingResult) {
+        operatorDisplay.innerHTML = "";
+        showingResult = false;
+    }
+
     if (newLine) {
 
-        operatorDisplay.innerHTML = "";
         calculatorDisplay.value = digit;
         newLine = false;
         calculatorError = false;
@@ -77,10 +83,22 @@ function operatorBtnPressed(operator) {
     const calculatorDisplay = document.getElementById("calculator-display");
     const operatorDisplay = document.getElementById("operator-display");
 
-    if (calculatorError || (currentOperator !== "" && newLine)) {
+    if (calculatorError) {
 
         return;
 
+    }
+
+    // If "=" was showing, continue with result
+    if (showingResult) {
+        showingResult = false;
+    }
+
+    // Operator overwrite
+    if (currentOperator !== "" && newLine) {
+        currentOperator = operator;
+        operatorDisplay.innerHTML = operator;
+        return;
     }
 
     firstNumber = parseFloat(calculatorDisplay.value);
@@ -100,6 +118,7 @@ function buttonAcPressed() {
     currentOperator = "";
     newLine = false;
     calculatorError = false;
+    showingResult = false;
 
 }
 
@@ -160,5 +179,6 @@ function equalBtnPressed() {
     operatorDisplay.innerHTML = "=";
     currentOperator = "";
     newLine = true;
+    showingResult = true;
 
 }

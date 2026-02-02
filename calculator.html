@@ -4,18 +4,18 @@
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
-        <table border="1">
+        <table>
 
             <!-- ROW 1 -->
-            <tr>
+            <tr id="display-row">
 
                 <!-- CALCULATOR DISPLAY -->
-                <td class="display" colspan="3">
+                <td colspan="3">
                     <input type="text" id="calculator-display" value="0" readonly>
                 </td>
 
                 <!-- OPERATOR DISPLAY -->
-                <td class="display" id="operator-display"></td>
+                <td id="operator-display"></td>
 
             </tr>
 
@@ -45,15 +45,15 @@
 
             <!-- ROW 5 -->
             <tr>
-                <td class="misc-button" onclick="buttonAcPressed()">AC</td>
+                <td class="utility-button" onclick="buttonAcPressed()">AC</td>
                 <td class="digit-button" onclick="digitBtnPressed(0)">0</td>
-                <td class="misc-button" onclick="decimalBtnPressed()">.</td>
+                <td class="utility-button" onclick="decimalBtnPressed()">.</td>
                 <td class="operator-button" onclick="operatorBtnPressed('÷')">÷</td>
             </tr>
 
             <!-- ROW 6 -->
             <tr>
-                <td class="operator-button" colspan="3" onclick="equalBtnPressed()">=</td>
+                <td class="operator-button" id="equal-button" colspan="3" onclick="equalBtnPressed()">=</td>
                 <td class="operator-button" onclick="toggleSignBtnPressed()">±</td>
             </tr>
             
